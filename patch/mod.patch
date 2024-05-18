@@ -1,0 +1,126 @@
+--- patch/original.js	2024-05-18 22:26:01.444990143 +0300
++++ patch/modified.js	2024-05-18 22:26:05.414974268 +0300
+@@ -8674,7 +8674,34 @@
+           },
+           sendMessage: function (e) {
+             if (0 == e.indexOf("/")) {
++              function splitCommand(command) {
++                // Regular expression to match words or quoted strings
++                const regex = /[^\s"]+|"([^"]*)"/gi;
++                const tokens = [];
++                let match;
++
++                // Iterate over matches found in the command string
++                while ((match = regex.exec(command)) !== null) {
++                  // Push the matched token into the tokens array
++                  tokens.push(match[1] ? match[1] : match[0]);
++                }
++
++                return tokens;
++              }
++
++              var args = splitCommand(e);
++
+               var t = 'Unknown command. Type "/help" for help.';
++
++              for (let i = 0; i < window.mcmod.commandArray.length; i++) {
++                const cmdObj = window.mcmod.commandArray[i];
++
++                // Check if the command matches the current command object's command
++                if (cmdObj.command === args[0]) {
++                  // Execute the associated function with the provided arguments
++                  t = cmdObj.func(args);
++                }
++              }
+               if (
+                 (0 == e.indexOf("/ban") && (t = "Command disabled."),
+                 0 == e.indexOf("/banip") && (t = "Command disabled."),
+@@ -9014,6 +9041,7 @@
+                     (this.soundPlayer.musicOn = F.music),
+                     (this.soundPlayer.soundOn = F.sound);
+                   var k = r(D);
++                  window.mcmod.mc = k;
+                   k.setPaused(!0),
+                     (k.worldSize = _),
+                     (k.worldHeight = 64),
+@@ -9434,7 +9462,11 @@
+                     ]);
+                   for (L = 0; L < this.colorBlockArray.length; L++)
+                     this.blockArray.push(this.colorBlockArray[L]);
+-                  var ae = i(509)(k, this.blockArray);
++                  var ae = i(509)(
++                    k,
++                    this.blockArray.concat(window.mcmod.blocks()),
++                  );
++
+                   ae.setBlock(j),
+                     window.addEventListener("beforeunload", function (e) {
+                       !T.playerSpawned ||
+@@ -9446,12 +9478,18 @@
+                     document.addEventListener("DOMMouseScroll", Ae, !1),
+                     k.inputs.down.on("fire", function () {
+                       if (k.targetedBlock) {
++                        var newj = j;
++                        if (window.mcmod.hackJ) {
++                          newj = window.mcmod.newJ;
++                        } else {
++                          newj = j;
++                        }
+                         var e = {
+                           targetedBlockBlockID: k.targetedBlock.blockID,
+                           targetedBlockPosition: k.targetedBlock.position,
+                           targetedBlockAdjacentPosition:
+                             k.targetedBlock.adjacent,
+-                          chosenBlock: j,
++                          chosenBlock: newj,
+                           addMode: k.addMode,
+                         };
+                         k.addMode && (e.localPlayer = !0);
+@@ -51324,28 +51362,26 @@
+                             (f = this.customShaderNameResolve(f, m, y, g, o));
+                         var b = o.toString(),
+                           E = i.effect,
+-                          T = r
+-                            .getEngine()
+-                            .createEffect(
+-                              f,
+-                              {
+-                                attributes: h,
+-                                uniformsNames: m,
+-                                uniformBuffersNames: y,
+-                                samplers: g,
+-                                defines: b,
+-                                fallbacks: s,
+-                                onCompiled: this.onCompiled,
+-                                onError: this.onError,
+-                                indexParameters: {
+-                                  maxSimultaneousLights:
+-                                    this._maxSimultaneousLights,
+-                                  maxSimultaneousMorphTargets:
+-                                    o.NUM_MORPH_INFLUENCERS,
+-                                },
++                          T = r.getEngine().createEffect(
++                            f,
++                            {
++                              attributes: h,
++                              uniformsNames: m,
++                              uniformBuffersNames: y,
++                              samplers: g,
++                              defines: b,
++                              fallbacks: s,
++                              onCompiled: this.onCompiled,
++                              onError: this.onError,
++                              indexParameters: {
++                                maxSimultaneousLights:
++                                  this._maxSimultaneousLights,
++                                maxSimultaneousMorphTargets:
++                                  o.NUM_MORPH_INFLUENCERS,
+                               },
+-                              a,
+-                            );
++                            },
++                            a,
++                          );
+                         T &&
+                           (this.allowShaderHotSwapping && E && !T.isReady()
+                             ? ((T = E), o.markAsUnprocessed())
