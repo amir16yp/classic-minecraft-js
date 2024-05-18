@@ -3,7 +3,7 @@
 A project dedicated to preserving and modding the JS version of classic minecraft (classic.minecraft.net)<br/>
 This project, to differentiate from other classicJS reversing projects, does not violate any copyright law, since the user must retrieve their own assets and patch their own source code using the included scripts.<br/>
 Consider this as simply a copyright-issue free "build system" for classic JS. If microsoft decides to take down projects that straight up store their assets on GitHub (which they have every right to), this is your alternative.<br/>
-Since there are better implementations of mod support than mine, I will porting other projectss features to this. For now, it has basic custom command and block support.
+Since there are better implementations of mod support than mine, I will porting other projects features to this. For now, it has basic custom command and block support.
 ## Instructions
 
 ### Install dependencies
