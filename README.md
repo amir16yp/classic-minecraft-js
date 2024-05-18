@@ -26,6 +26,3 @@ and go the url that is printed.<br/>
 To update or create a patch, modify your root folder app.js to your liking, and then run `bash create-patch.sh`.
 <br/>
 The next time you will run `bash apply-patch.sh` will generate your modified app.js.<br/>
-
-## Video
-[![Video](https://img.youtube.com/vi/6MNwFbKnpXg/0.jpg)](https://www.youtube.com/watch?v=6MNwFbKnpXg)
