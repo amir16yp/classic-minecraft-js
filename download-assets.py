@@ -9,11 +9,10 @@ os.makedirs('assets/textures/previews', exist_ok=True)
 os.makedirs('assets/fonts', exist_ok=True)
 os.makedirs('assets/js', exist_ok=True)
 os.makedirs('assets/css', exist_ok=True)
+os.makedirs('assets/sounds', exist_ok=True)
+
 
 mc_classic_url = "https://classic.minecraft.net"
-
-
-
 
 
 def download_with_requests(asset):
