@@ -1,7 +1,7 @@
 # classic-minecraft-js
 
 A project dedicated to preserving and modding the JS version of classic minecraft (classic.minecraft.net)
-
+This project, to differentiate from other classicJS reversing projects, does not violate any copyright law, since the user must retrieve their own assets and patch their own source code using the included scripts.
 ## Instructions
 
 ### Install dependencies
