@@ -8,7 +8,7 @@ check_command() {
     fi
 }
 
-check_command prettier
+check_command js-beautify
 check_command diff
 
 mkdir -p patch/
@@ -17,7 +17,8 @@ if [ ! -f "assets/js/app.js" ]; then
     check_command curl
     curl "https://classic.minecraft.net/assets/js/app.js" -o "assets/js/app.js"
 fi
-prettier "assets/js/app.js" > "patch/original.js"
-prettier app.js > "patch/modified.js"
+
+js-beautify "assets/js/app.js" > "patch/original.js"
+js-beautify app.js > "patch/modified.js"
 
 diff -u "patch/original.js" "patch/modified.js" > "patch/mod.patch"
