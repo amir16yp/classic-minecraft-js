@@ -11,7 +11,7 @@ By default this includes a port of [js0.23-improved](https://github.com/RobinBoe
 
 ### Install dependencies
 
-This requires a *nix system or WSL, python3, prettier (js code formatter), wget and curl.<br/>
+This requires a *nix system or WSL, python3, js-beautify (js code formatter, install with npm), wget and curl.<br/>
 
 ### Setup
 
