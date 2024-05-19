@@ -2,8 +2,6 @@
 
 var blockcounter = 40;
 
-var blocks = [];
-
 function createBlock(texture) {
   window.mcmod.api2.registry.registerMaterial(texture, null, "modded/" + texture + ".png");
   blockid = window.mcmod.api2.registry.registerBlock(blockcounter, {
