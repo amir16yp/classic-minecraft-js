@@ -9,6 +9,7 @@ check_command() {
 }
 
 check_command prettier
+check_command diff
 
 mkdir -p patch/
 if [ ! -f "assets/js/app.js" ]; then
