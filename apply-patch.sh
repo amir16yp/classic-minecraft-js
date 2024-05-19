@@ -14,6 +14,7 @@ check_command patch
 if [ ! -f "assets/js/app.js" ]; then
     echo "original app.js not found; downloading with curl"
     check_command curl
+    mkdir -p assets/js/ # if the user didnt use download-assets.py yet they likely dont have this directory    
     curl "https://classic.minecraft.net/assets/js/app.js" -o assets/js/app.js
 fi
 
