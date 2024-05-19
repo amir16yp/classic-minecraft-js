@@ -1,8 +1,13 @@
 import argparse
 import subprocess
-from requests import get
 from json import loads
 import os
+
+try:
+    from requests import get
+    _HAS_REQUESTS = True
+except ModuleNotFoundError:
+    _HAS_REQUESTS = False
 
 
 os.makedirs('assets/textures/previews', exist_ok=True)
@@ -16,6 +21,10 @@ mc_classic_url = "https://classic.minecraft.net"
 
 
 def download_with_requests(asset):
+    if not _HAS_REQUESTS:
+        print("failed to import 'requests', try --use-wget instead.")
+        exit(1)
+
     with open(asset[1:], 'wb') as asset_file:
         asset_file.write(get(mc_classic_url + asset).content)
 
