@@ -8,15 +8,16 @@ check_command() {
     fi
 }
 
-check_command prettier
+check_command js-beautify
 check_command patch
+
 if [ ! -f "assets/js/app.js" ]; then
     echo "original app.js not found; downloading with curl"
     check_command curl
     curl "https://classic.minecraft.net/assets/js/app.js" -o "assets/js/app.js"
 fi
 # Run prettier on the target file
-prettier "assets/js/app.js" > "app.js"
+js-beautify "assets/js/app.js" > "app.js"
 
 # List all .patch files in the patch directory
 patch_files=(patch/*.patch)
