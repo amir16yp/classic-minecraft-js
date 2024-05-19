@@ -6,8 +6,7 @@ This project, to differentiate from other classicJS reversing projects, does not
 
 Consider this as simply a copyright-issue free "build system" for classic JS. If microsoft decides to take down projects that straight up store their assets on GitHub (which they have every right to), this is your alternative.
 
-By default this includes a port of [js0.23-improved](https://github.com/RobinBoers/js0.23-improved), as well as `experimental.patch` which is my fork of it with extra features such as programmable commands and custom blocks.
-
+By default this includes a port of [js0.23-improved](https://github.com/RobinBoers/js0.23-improved), as well as `experimental.patch` which is my fork of it with extra features such as programmable commands and custom blocks. Another patch that is included is `documented.patch` which contains a patch with documentation and reversing from @TheSunCat [repo](https://github.com/TheSunCat/Minecraft-Classic-Reversed), which helps a lot for understanding the code.
 ## Instructions
 
 ### Install dependencies
