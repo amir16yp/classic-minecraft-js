@@ -44,6 +44,6 @@ and go the url that is printed.
 
 ### Modding
 
-To update or create a patch, modify your root folder app.js to your liking, and then run `bash create-patch.sh`.
+To update or create a patch, modify your root folder app.js to your liking, and then run `bash create-patch.sh`. I highly recommend applying `documented.patch` first however.
 
 The next time you will run `bash apply-patch.sh` will generate your modified app.js.
